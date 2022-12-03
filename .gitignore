@@ -1,0 +1,6 @@
+apiEcommerce/postman/Intelbras.postman_collection.json
+apiEcommerce/src/app.controller.spec.ts
+apiEcommerce/src/core/database/migrations/1669931394489-init.ts
+apiEcommerce/src/core/database/migrations/1669952726883-govdigital.ts
+apiEcommerce/test/app.e2e-spec.ts
+apiEcommerce/test/jest-e2e.json
