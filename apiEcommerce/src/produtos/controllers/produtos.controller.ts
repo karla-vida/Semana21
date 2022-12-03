@@ -29,7 +29,6 @@ export class ProdutosController {
   @Get()
   async obterProdutos(@Query() query): Promise<ProductEntity[]> {
     try {
-      console.log("teste");
       return await this.produtosService.find(query);
     } catch (error) {
       throw new HttpException(
@@ -37,6 +36,20 @@ export class ProdutosController {
         HttpStatus.BAD_REQUEST,
       );
     }
+  }
+
+  @Get("/categorias/:category")
+  async obterProdutoCategoria(@Param() params: FindProductDTO, @Res() response: Response): Promise<ProductEntity[]> {
+    try {
+      const produtos =  await this.produtosService.findBy(params);
+      if (produtos) {
+        response.status(HttpStatus.OK).send(produtos)
+        return produtos;
+      }
+    } catch (error) {
+      throw new HttpException({ reason: error.detail }, HttpStatus.BAD_REQUEST)
+    }
+
   }
 
   @Post()

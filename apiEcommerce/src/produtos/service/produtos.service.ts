@@ -41,7 +41,17 @@ export class ProdutosService {
   async findOne(param: FindProductDTO): Promise<ProductEntity> {
     return new Promise(async (resolve, reject) => {
       try {
-        resolve(await this.productRepository.findOneBy(param));
+        resolve(await this.productRepository.findOneBy({id: param.id}));
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+
+  async findBy(param:FindProductDTO): Promise<ProductEntity[]> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        resolve(await this.productRepository.findBy({category:param.category}));
       } catch (error) {
         reject(error)
       }
