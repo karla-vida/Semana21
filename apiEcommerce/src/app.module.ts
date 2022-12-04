@@ -1,3 +1,4 @@
+import { CarrinhoModule } from './carrinho/carrinho.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
@@ -9,7 +10,8 @@ import { ProdutosModule } from './produtos/produtos.module';
       envFilePath: '.env',
       isGlobal: true 
     }),
-    ProdutosModule
+    ProdutosModule,
+    CarrinhoModule
   ],
   controllers: [AppController],
   providers: [    
