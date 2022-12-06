@@ -1,34 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { CategoriaProduto } from "../utils/CategoriaProduto.enum";
+import { CarrinhoEntity } from './../../carrinho/entities/carrinho.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CategoriaProduto } from '../utils/CategoriaProduto.enum';
 
-// +-------------+--------------+----------------------------+
-// |                        products                         |
-// +-------------+--------------+----------------------------+
-// | id          | uuid         | PRIMARY KEY                |
-// | code        | string       | AUTO UUID                  |
-// | name        | varchar(100) |                            |
-// | category    | enum         | segurança|redes|acesso     |
-// | price       | number       |                            |
-// | stock       | number       |                            |
-// +-------------+--------------+----------------------------+
-
-@Entity({ name: "products" })
+@Entity({ name: 'products' })
 export class ProductEntity {
-    @PrimaryGeneratedColumn()
-    id: string;
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @Column({ length: 100 })
-    name: string;
-    
-    @Column()
-    code: string;
+  @Column({ length: 100 })
+  name: string;
 
-    @Column('int')
-    category: CategoriaProduto;
+  @Column()
+  code: string;
 
-    @Column('float')
-    price: number;
+  @Column('int')
+  category: CategoriaProduto;
 
-    @Column('int')
-    stock: number;
+  @Column('float')
+  price: number;
+
+  @Column('int')
+  stock: number;
+
+  @OneToMany(() => CarrinhoEntity, (carrinho) => carrinho.produto)
+  @JoinColumn()
+  CarrinhoEntity?: CarrinhoEntity[];
 }
