@@ -21,7 +21,7 @@ export class CarrinhoEntity {
   @Column()
   valor: number;
 
-  @ManyToOne((type) => ProductEntity, (produto) => produto.CarrinhoEntity)
+  @ManyToOne((type) => ProductEntity, (produto) => produto.CarrinhoEntity, { eager: true })
   @JoinColumn({ name: 'id_produto' })
   produto: ProductEntity;
 }
